@@ -51,27 +51,35 @@ namespace ConsoleUI
             //    Console.WriteLine("Id:" + car.CarId + " - " + car.Description + " " + car.ModelYear + "   -->Daily Price:" + car.DailyPrice + "TL");
             //}
 
-           
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
-            brandManager.Add(new Brand{BrandId = 1, BrandName = "Mercedes"});
 
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            colorManager.Add(new Color { ColorId = 1, ColorName = "Siyah" });
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //brandManager.Add(new Brand { BrandId = 1, BrandName = "Mercedes" });
+
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
+            //colorManager.Add(new Color { ColorId = 1, ColorName = "Siyah" });
+
+            //Car car2 = new Car
+            //{
+
+            //    BrandId = 1,
+            //    ColorId = 1,
+            //    ModelYear = "2016",
+            //    Description = "Mercedes C180 100 beygir",
+            //    DailyPrice = 200
+            //};
 
             CarManager carManager = new CarManager(new EfCarDal());
-            carManager.Add(new Car
+            //carManager.Add(car2);
+
+            foreach (var car in carManager.GetAll())
             {
-                CarId = 1,
-                BrandId = 1,
-                ColorId = 1,
-                ModelYear = "2020",
-                Description = "Mercedes E250 150 beygir Canavar",
-                DailyPrice = 500
+                Console.WriteLine(car.Description);
+            }
 
-            });
 
-            carManager.GetAll();
-        
+            //carManager.Delete(car1);
+
+
 
         }
     }
