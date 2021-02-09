@@ -10,77 +10,110 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ////CarManager nesnesi oluşturuyorum InMemory kullanıcak
-            //CarManager carManager = new CarManager(new InMemoryCarDal());
-
-            ////InMemory de hazır olan listedeki dataları yazdırıyorum
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine("Id:" + car.CarId + " - " + car.Description + " " + car.ModelYear + "   -->Daily Price:" + car.DailyPrice + "TL");
-            //}
-
-            //Console.WriteLine("-----------------------------------------------------");
-            ////Yeni data ekleyip listeyi tekrar yazdırıyorum
-            //carManager.Add(new Entities.Concrete.Car { CarId = 7, BrandId = 4, ColorId = 5, Description = "Peugeot 508 131 beygir", ModelYear = "2020", DailyPrice = 600 });
-
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine("Id:" + car.CarId + " - " + car.Description + " " + car.ModelYear + "   -->Daily Price:" + car.DailyPrice + "TL");
-            //}
-            //Console.WriteLine("-----------------------------------------------------");
-
-            ////ID si 1 olan datayı güncelleyip listeyi tekrar yazdırıyorum
-            //carManager.Update(new Entities.Concrete.Car { CarId = 1, BrandId=1,Description= "Porche Taycan 600 beygir", ColorId=1, ModelYear="2015", DailyPrice = 2500 });
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine("Id:" + car.CarId + " - " + car.Description + " " + car.ModelYear + "   -->Daily Price:" + car.DailyPrice + "TL");
-            //}
-            //Console.WriteLine("-----------------------------------------------------");
-
-            ////ID si 2 olan datayı siliyorum ve listeyi tekrar yazdırıyorum
-            //carManager.Delete(new Entities.Concrete.Car { CarId = 2 });
-            //foreach (var car in carManager.GetAll())
-            //{
-            //    Console.WriteLine("Id:" + car.CarId + " - " + car.Description + " " + car.ModelYear + "   -->Daily Price:" + car.DailyPrice + "TL");
-            //}
-            //Console.WriteLine("-----------------------------------------------------");
-
-            ////ID ye göre veri getirtiyorum
-            //foreach (var car in carManager.GetById(3))
-            //{
-            //    Console.WriteLine("Id:" + car.CarId + " - " + car.Description + " " + car.ModelYear + "   -->Daily Price:" + car.DailyPrice + "TL");
-            //}
+            //BrandTest();
+            //ColorTest();
+            CarTest();
+            //ModelTest();
 
 
-            //BrandManager brandManager = new BrandManager(new EfBrandDal());
-            //brandManager.Add(new Brand { BrandId = 1, BrandName = "Mercedes" });
-
-            //ColorManager colorManager = new ColorManager(new EfColorDal());
-            //colorManager.Add(new Color { ColorId = 1, ColorName = "Siyah" });
-
-            //Car car2 = new Car
-            //{
-
-            //    BrandId = 1,
-            //    ColorId = 1,
-            //    ModelYear = "2016",
-            //    Description = "Mercedes C180 100 beygir",
-            //    DailyPrice = 200
-            //};
-
-            CarManager carManager = new CarManager(new EfCarDal());
-            //carManager.Add(car2);
-
-            foreach (var car in carManager.GetAll())
+            static void CarTest()
             {
-                Console.WriteLine(car.Description);
+                CarManager carManager = new CarManager(new EfCarDal());
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 1,
+                //    ColorId = 1,
+                //    ModelId = 1,
+                //    ModelYear = "2018",
+                //    Description = "130 beygir temiz",
+                //    DailyPrice = 200
+                //});
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 1,
+                //    ColorId = 2,
+                //    ModelId = 2,
+                //    ModelYear = "2019",
+                //    Description = "150 beygir temiz bakımlı",
+                //    DailyPrice = 400
+                //});
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 1,
+                //    ColorId = 1,
+                //    ModelId = 3,
+                //    ModelYear = "2020",
+                //    Description = "250 beygir temiz canavar",
+                //    DailyPrice = 800
+                //});
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 2,
+                //    ColorId = 2,
+                //    ModelId = 4,
+                //    ModelYear = "2016",
+                //    Description = "110 beygir bakımı yapılmış",
+                //    DailyPrice = 350
+                //});
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 2,
+                //    ColorId = 1,
+                //    ModelId = 5,
+                //    ModelYear = "2017",
+                //    Description = "150 beygir az kullanılmış",
+                //    DailyPrice = 500
+                //});
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 3,
+                //    ColorId = 1,
+                //    ModelId = 6,
+                //    ModelYear = "2010",
+                //    Description = "100 beygir güzel",
+                //    DailyPrice = 150
+                //});
+                //carManager.Add(new Car
+                //{
+                //    BrandId = 3,
+                //    ColorId = 2,
+                //    ModelId = 7,
+                //    ModelYear = "2016",
+                //    Description = "130 beygir temiz ve bakımlı",
+                //    DailyPrice = 300
+                //});
+
+                foreach (var car in carManager.GetCarDetails())
+                {
+                    Console.WriteLine(car.CarId+" - "+car.BrandName+" - "+car.ModelName+" - "+car.ModelYear+" - "+car.DailyPrice+" - "+car.Descripton);
+                }
             }
 
+            static void ColorTest()
+            {
+                ColorManager colorManager = new ColorManager(new EfColorDal());
+                colorManager.Add(new Color { ColorName = "Beyaz" });
+                colorManager.Add(new Color { ColorName = "Kırmızı" });
+            }
 
-            //carManager.Delete(car1);
+            static void BrandTest()
+            {
+                BrandManager brandManager = new BrandManager(new EfBrandDal());
+                brandManager.Add(new Brand { BrandName = "BMW" });
+                brandManager.Add(new Brand { BrandName = "AUDİ" });
+            }
 
-
-
+            static void ModelTest()
+            {
+                ModelManager modelManager = new ModelManager(new EfModelDal());
+                modelManager.Add(new Model { BrandId = 1, ModelName = "C180" });
+                modelManager.Add(new Model { BrandId = 1, ModelName = "E250" });
+                modelManager.Add(new Model { BrandId = 1, ModelName = "GLA200" });
+                modelManager.Add(new Model { BrandId = 2, ModelName = "520D" });
+                modelManager.Add(new Model { BrandId = 2, ModelName = "X5" });
+                modelManager.Add(new Model { BrandId = 3, ModelName = "A5" });
+                modelManager.Add(new Model { BrandId = 3, ModelName = "A6" });
+            }
         }
     }
 }

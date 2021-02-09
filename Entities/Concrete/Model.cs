@@ -5,9 +5,10 @@ using Core.Entities;
 
 namespace Entities.Concrete
 {
-    public class Brand:IEntity
+    public class Model:IEntity
     {
+        public int ModelId { get; set; }
         public int BrandId { get; set; }
-        public string BrandName { get; set; }
+        public string ModelName { get; set; }
     }
 }
