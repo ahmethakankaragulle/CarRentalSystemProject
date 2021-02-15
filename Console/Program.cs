@@ -12,8 +12,11 @@ namespace ConsoleUI
         {
             //BrandTest();
             //ColorTest();
-            CarTest();
+            //CarTest();
             //ModelTest();
+           // UserTest();
+           // CustomerTest();
+
 
 
             static void CarTest()
@@ -78,22 +81,32 @@ namespace ConsoleUI
                 //    BrandId = 3,
                 //    ColorId = 2,
                 //    ModelId = 7,
-                //    ModelYear = "2016",
-                //    Description = "130 beygir temiz ve bakımlı",
-                //    DailyPrice = 300
+                //    ModelYear = "2009",
+                //    Description = "110 beygir bakımlı",
+                //    DailyPrice = 150
                 //});
 
-                foreach (var car in carManager.GetCarDetails())
+                foreach (var car in carManager.GetCarDetails().Data)
                 {
                     Console.WriteLine(car.CarId+" - "+car.BrandName+" - "+car.ModelName+" - "+car.ModelYear+" - "+car.DailyPrice+" - "+car.Descripton);
                 }
+                Console.WriteLine(carManager.GetCarDetails().Message);
             }
 
             static void ColorTest()
             {
                 ColorManager colorManager = new ColorManager(new EfColorDal());
-                colorManager.Add(new Color { ColorName = "Beyaz" });
-                colorManager.Add(new Color { ColorName = "Kırmızı" });
+                colorManager.Delete(new Color { ColorId = 1002 });
+                colorManager.Delete(new Color { ColorId = 1003 });
+                colorManager.Delete(new Color { ColorId = 1004});
+                colorManager.Delete(new Color { ColorId = 1005 });
+  
+                var result = colorManager.GetAll().Data;
+                foreach (var color in result)
+                {
+                    Console.WriteLine(color.ColorId + " - " + color.ColorName);
+                }
+                
             }
 
             static void BrandTest()
@@ -114,6 +127,26 @@ namespace ConsoleUI
                 modelManager.Add(new Model { BrandId = 3, ModelName = "A5" });
                 modelManager.Add(new Model { BrandId = 3, ModelName = "A6" });
             }
+
+            static void UserTest()
+            {
+                UserManager userManager = new UserManager(new EfUserDal());
+                userManager.Add(new User
+                {   FirstName = "Ahmet Hakan",
+                    LastName = "Karagülle",
+                    Email = "ahmet.hkn.25@hotmail.com",
+                    Password = "ahmethkn25"
+                });
+            }
+
+            static void CustomerTest()
+            {
+                CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+                customerManager.Add(new Customer {UserId = 1, CompanyName = "Karagülle RentACar" });
+
+            }
+
+
         }
     }
 }
