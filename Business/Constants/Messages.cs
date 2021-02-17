@@ -26,19 +26,19 @@ namespace Business.Constants
         public static string ModelDeleted = "Model silindi";
         public static string ModelUpdated = "Model güncellendi";
         public static string ModelsListed = "Modeller listelendi";
-        internal static string UserNameInvalid;
-        internal static string UserAdded;
-        internal static string UserDeleted;
-        internal static string UserUpdated;
-        internal static string CompanyNameInvalid;
-        internal static string CustomerAdded;
-        internal static string CustomerDeleted;
-        internal static string CustomerListed;
-        internal static string CustomerUpdated;
-        internal static string UserListed;
-        internal static string RentalAdded;
-        internal static string RentalDeleted;
-        internal static string RentalUpdated;
-        internal static string RentalListed;
+        public static string UserNameInvalid = "Geçersiz kullanıcı adı";
+        public static string UserAdded="Kullanıcı eklendi";
+        public static string UserDeleted="Kullanıcı silindi";
+        public static string UserUpdated="Kullanıcı güncellendi";
+        public static string UserListed = "Kullanıcı listelendi";
+        public static string CompanyNameInvalid="Geçersiz şirket adı";
+        public static string CustomerAdded="Müşteri eklendi";
+        public static string CustomerDeleted="Müşteri silindi";
+        public static string CustomerListed="Müşteri güncellendi";
+        public static string CustomerUpdated="Müşteri güncellendi";
+        public static string RentalAdded="Kiralama eklendi";
+        public static string RentalDeleted="Kiralam silindi";
+        public static string RentalUpdated="Kiralama güncellendi";
+        public static string RentalListed="Kiralama listelendi";
     }
 }

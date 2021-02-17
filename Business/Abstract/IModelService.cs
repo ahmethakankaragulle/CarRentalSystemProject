@@ -6,10 +6,10 @@ using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    interface IModelService
+    public interface IModelService
     {
         IDataResult<List<Model>> GetAll();
-        IDataResult<List<Model>> GetByBradnId(int id);
+        IDataResult<List<Model>> GetByBrandId(int id);
         IResult Add(Model model);
         IResult Update(Model model);
         IResult Delete(Model model);
