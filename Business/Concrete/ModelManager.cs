@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,13 +19,11 @@ namespace Business.Concrete
         {
             _modelDal = modelDal;
         }
-
+        
+        [ValidationAspect(typeof(ModelValidator))]
         public IResult Add(Model model)
         {
-            if (model.ModelName.Length <= 1)
-            {
-                return new ErrorResult(Messages.ModelNameInvalid);
-            }
+      
             _modelDal.Add(model);
             return new SuccessResult(Messages.ModelAdded);
 
