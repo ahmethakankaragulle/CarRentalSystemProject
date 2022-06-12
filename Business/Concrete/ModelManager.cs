@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -21,6 +22,7 @@ namespace Business.Concrete
         }
         
         [ValidationAspect(typeof(ModelValidator))]
+        [SecuredOperation("admin")]
         public IResult Add(Model model)
         {
       
@@ -29,6 +31,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("admin")]
         public IResult Delete(Model model)
         {
             _modelDal.Delete(model);
@@ -47,6 +50,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Model>>(_modelDal.GetAll(m=>m.BrandId==id));
         }
 
+        [ValidationAspect(typeof(ModelValidator))]
+        [SecuredOperation("admin")]
         public IResult Update(Model model)
         {
             _modelDal.Update(model);

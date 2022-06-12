@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -24,6 +25,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarValidator))]
+        [SecuredOperation("admin")]
         public IResult Add(Car car)
         {   
             //business codes
@@ -34,12 +36,16 @@ namespace Business.Concrete
             
         }
 
+        [SecuredOperation("admin")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
            
         }
+        
+        [ValidationAspect(typeof(CarValidator))]
+        [SecuredOperation("admin")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
